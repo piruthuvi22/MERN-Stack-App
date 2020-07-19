@@ -53,7 +53,7 @@ router.route('/edit-job/:id').put((req, res, next) => {
     })
 })
 
-// Delete Student
+// Delete Job
 router.route('/delete-job/:id').delete((req, res, next) => {
     jobSchema.findByIdAndRemove(req.params.id, (error, data) => {
         if (error) {

@@ -10,7 +10,10 @@ var jobSchema = new Schema({
     },
     Description: {
         type: String
-    }
+    },
+    Deadline: {
+        type: String
+    },
 
 },
     {

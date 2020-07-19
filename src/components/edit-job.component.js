@@ -7,12 +7,14 @@ export class EditJob extends React.Component {
         this.state = {
             Position: '',
             Industry: '',
-            Description: ''
+            Description: '',
+            Deadline: ''
         }
 
         this.onChangePosition = this.onChangePosition.bind(this);
         this.onChangeDescription = this.onChangeDescription.bind(this);
         this.onChangeIndustry = this.onChangeIndustry.bind(this);
+        this.onChangeDeadline = this.onChangeDeadline.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     }
 
@@ -22,7 +24,8 @@ export class EditJob extends React.Component {
                 this.setState({
                     Position: res.data.Position,
                     Industry: res.data.Industry,
-                    Description: res.data.Description
+                    Description: res.data.Description,
+                    Deadline: res.data.Deadline
                 })
             })
             .catch(err => console.log(err));
@@ -41,13 +44,17 @@ export class EditJob extends React.Component {
         this.setState({ Industry: e.target.value })
     }
 
+    onChangeDeadline(e) {
+        this.setState({ Deadline: e.target.value })
+    }
     onSubmit(e) {
         e.preventDefault()
 
         const Obj = {
             Position: this.state.Position,
             Industry: this.state.Industry,
-            Description: this.state.Description
+            Description: this.state.Description,
+            Deadline: this.state.Deadline,
         }
         axios.put('http://localhost:4000/edit-job/' + this.props.match.params.id, Obj)
             .then(res => {
@@ -56,7 +63,8 @@ export class EditJob extends React.Component {
                         this.setState({
                             Position: res.data.Position,
                             Industry: res.data.Industry,
-                            Description: res.data.Description
+                            Description: res.data.Description,
+                            Deadline: res.data.Deadline
                             // jobs: res.data
                         })
                     })
@@ -92,6 +100,10 @@ export class EditJob extends React.Component {
                                 <option value="Media">Media</option>
                             </select>
                         </div>
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="date">Deadline</label>
+                        <input placeholder="Deadline" type="date" value={this.state.Deadline} onChange={this.onChangeDeadline} id="date" className="form-control" />
                     </div>
                     <div className="form-group">
                         <label htmlFor="description">Job Description</label>

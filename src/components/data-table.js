@@ -24,6 +24,7 @@ export class JobTableRow extends React.Component {
                 <td>{this.props.object.Position}</td>
                 <td>{this.props.object.Industry}</td>
                 <td>{this.props.object.Description}</td>
+                <td>{this.props.object.Deadline}</td>
                 <td className="text-center">
                     <button className="btn btn-dark  m-1">
                         <Link to={"/edit-job/" + this.props.object._id} className="text-light text-decoration-none"> Edit </Link>

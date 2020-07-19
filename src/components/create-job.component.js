@@ -8,12 +8,14 @@ export class CreateJob extends React.Component {
         this.onChangePosition = this.onChangePosition.bind(this);
         this.onChangeDescription = this.onChangeDescription.bind(this);
         this.onChangeIndustry = this.onChangeIndustry.bind(this);
+        this.onChangeDeadline = this.onChangeDeadline.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
             Position: "",
             Description: "",
-            Industry: "Business services"
+            Industry: "Business services",
+            Deadline: ""
         }
     }
 
@@ -28,6 +30,9 @@ export class CreateJob extends React.Component {
     onChangeIndustry(e) {
         this.setState({ Industry: e.target.value })
     }
+    onChangeDeadline(e) {
+        this.setState({ Deadline: e.target.value })
+    }
 
     onSubmit(e) {
         e.preventDefault()
@@ -35,17 +40,18 @@ export class CreateJob extends React.Component {
         const jobObject = {
             Position: this.state.Position,
             Industry: this.state.Industry,
-            Description: this.state.Description
+            Description: this.state.Description,
+            Deadline: this.state.Deadline
         };
 
         axios.post('http://localhost:4000/create-job', jobObject)
             .then(res => console.log(res.data))
 
         console.log("Job added");
-        // console.log(`${this.state.Position}`);
+        console.log(`${this.state.Deadline}`);
         // console.log((`${this.state.Description}`));
 
-        this.setState({ Position: "", Description: "", Industry: "" })
+        this.setState({ Position: "", Description: "", Industry: "", Deadline: "" })
 
     }
 
@@ -69,6 +75,10 @@ export class CreateJob extends React.Component {
                                 <option value="Media">Media</option>
                             </select>
                         </div>
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="date">Deadline</label>
+                        <input placeholder="Deadline" type="date" value={this.state.Deadline} onChange={this.onChangeDeadline} id="date" className="form-control" />
                     </div>
                     <div className="form-group">
                         <label htmlFor="description">Job Description</label>

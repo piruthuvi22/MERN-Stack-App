@@ -30,7 +30,7 @@ export class ListJob extends React.Component {
         return (
             this.state.jobs.map((job, i) => {
                 return (
-                    <JobTableRow status={this.state.status} object={job} key={i} />
+                    <JobTableRow object={job} key={i} />
                 )
             })
         )
@@ -45,6 +45,7 @@ export class ListJob extends React.Component {
                             <th >Position</th>
                             <th >Industry</th>
                             <th >Description</th>
+                            <th>Deadline</th>
                             <th colSpan={2} className="text-center">Action</th>
                         </tr>
                     </thead>
